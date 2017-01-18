@@ -33,7 +33,7 @@ export class AppComponent  {
 
 /* ---------------- Table data entry ---------------- */
   addDetails(name: string, address: string, city: string, facility: string):void {
-    if(name != "" && address != "" && city !="" && (facility === "" && this.fflag === 1 )){
+    if(name != "" && address != "" && city !="" && (facility != "" || this.fflag === 1)){
       if(this.flag === 1){
         this.clearFilter();
       }
