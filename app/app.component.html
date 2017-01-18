@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">            
+        <div class="col-md-6">
+            <header>HOTEL DETAILS</header>
+            <div class="form-group">
+                <label>Hotel name:</label>
+                <input type="text" class="form-control" placeholder="Enter hotel name" #name [(ngModel)]="tname">
+            </div>
+            <div class="form-group">
+                <label>Hotel address:</label>
+                <input type="text" class="form-control" placeholder="Enter hotel address" #address [(ngModel)]="taddress">
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" placeholder="Enter hotel city" #city [(ngModel)]="tcity">
+            </div>
+            <div class="input-group form-group">
+                <label>Facilities</label>
+                <input type="text" name="title" class="form-control" placeholder="Enter hotel facilities" #facilities [(ngModel)]="tfacility" (keyup.enter)="addFacility(facilities.value)">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit" (click)="addFacility(facilities.value)">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                </div>
+                <p class="help-block">
+                    <span *ngFor="let temp of facilityarray">{{temp.facility}}, </span>
+                </p>
+            </div> 
+            <div class="form-group">
+                <button class="btn btn-success btn-block btn-lg" (click)="addDetails(name.value, address.value, city.value, facilities.value)">Submit Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" [hidden]="!myExpression">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Filter :</h2>
+        </div>
+        <div class="col-md-8">
+            <div class="col-xs-3">
+                <label>City</label>
+                <input type="text" class="form-control" placeholder="Enter city" #cityName [(ngModel)]="filterCity">
+            </div>
+            <div class="col-xs-3">
+                <label>Facilities</label>
+                <input type="text" class="form-control" placeholder="Enter facility" #facility [(ngModel)]="filterFacility">
+            </div>
+            <div class="col-xs-3" id="filterSubmit">
+                <button class="btn btn-success" (click)="Filter(cityName.value,facility.value)">Apply</button>
+            </div>
+            <div class="col-xs-3" id="filterSubmit">
+                <button class="btn btn-danger" (click)="clearFilter()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Facilities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of tabledata">
+                <td>{{data.name}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.city}}</td>
+                <td>
+                    <span *ngFor="let temp of data.facility">{{temp.facility}}</span>
+                </td>
+                <!--
+                <td>
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </td>
+                -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
